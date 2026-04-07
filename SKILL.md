@@ -444,12 +444,14 @@ AI 拿使用者的提示詞跟所有技能包的 name + description 比對。注
 
 ### 打包模式
 
+本技能包已內建打包與驗證腳本，路徑相對於本技能包根目錄：
+
 ```bash
 # 打包成 .skill 檔
-python <skill-creator-path>/scripts/package_skill.py <技能包路徑>
+python <本技能包路徑>/scripts/package_skill.py <要打包的技能包路徑>
 
 # 快速驗證
-python <skill-creator-path>/scripts/quick_validate.py <技能包路徑>
+python <本技能包路徑>/scripts/quick_validate.py <要驗證的技能包路徑>
 ```
 
 ### 本地端版本管理建議
@@ -503,23 +505,27 @@ python <skill-creator-path>/scripts/quick_validate.py <技能包路徑>
 
 ---
 
-## 官方 skill-creator 資源索引
+## 內建資源索引
 
-模式四和模式五依賴 Anthropic 官方 skill-creator 技能包。關鍵資源：
+本技能包已內建模式四、模式五所需的所有腳本與 agent 指令，可獨立運作（不需另外安裝官方 skill-creator）。所有路徑相對於本技能包根目錄：
 
-| 功能 | 官方資源位置 | 用途 |
-|------|------------|------|
+| 功能 | 資源位置 | 用途 |
+|------|---------|------|
 | 評分 | agents/grader.md | 定義如何評判 assertion |
 | 盲測比較 | agents/comparator.md | A/B 盲測的 agent 指令 |
 | 分析 | agents/analyzer.md | 分析為什麼贏家贏了 |
 | JSON 格式 | references/schemas.md | evals / grading / benchmark / comparison / analysis 的 JSON 結構 |
+| 跑測試 | scripts/run_eval.py | 執行單一 eval 案例 |
 | 基準測試彙整 | scripts/aggregate_benchmark.py | 彙整 benchmark 數據 |
 | 觸發優化迴圈 | scripts/run_loop.py | 自動化觸發調校 |
+| 描述優化 | scripts/improve_description.py | 改寫 description |
 | 結果檢視器 | eval-viewer/generate_review.py | 產生 HTML 檢視器 |
+| 報告產生 | scripts/generate_report.py | 產出總結報告 |
 | 打包 | scripts/package_skill.py | 打包成 .skill 檔 |
 | 驗證 | scripts/quick_validate.py | 快速驗證技能包結構 |
-| UI metadata 生成 | scripts/generate_openai_yaml.py | 重生 agents/openai.yaml |
 | 觸發測試模板 | assets/eval_review.html | 觸發測試查詢的 HTML 編輯器 |
+
+> 上述 scripts/、agents/、assets/、eval-viewer/、references/schemas.md 來自 Anthropic 官方 skill-creator（Apache 2.0），完整出處與授權見 NOTICE.md 與 LICENSE-skill-creator.txt。
 
 ---
 
