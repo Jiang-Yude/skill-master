@@ -1,0 +1,7 @@
+interface:
+  display_name: "技能包大師"
+  short_description: "中文技能包全生命週期管理、規格驅動、驗證與觸發調校系統"
+  default_prompt: "Use $skill-master to create, refine, evaluate, or tune a skill with a spec-driven workflow."
+
+policy:
+  allow_implicit_invocation: true

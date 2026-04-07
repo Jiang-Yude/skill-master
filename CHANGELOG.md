@@ -4,6 +4,42 @@
 
 ---
 
+## v1.1 — 2026-04-07
+
+補強跨 Agent 獨立運作需要的相容層與驗證層，不刪除既有五種模式架構，只在原有版本上補充。
+
+### 新增
+
+- `agents/openai.yaml`：補上 OpenAI / Codex 類環境的 UI metadata
+- `references/compatibility.md`：整理跨 Agent 相容邊界、降級策略、最低獨立運作條件
+
+### 修改
+
+- `scripts/quick_validate.py`
+  - 從只驗 `SKILL.md` frontmatter，升級成：
+    - 核心結構驗證
+    - `agents/openai.yaml` 驗證
+    - 基本一致性檢查
+  - 新增 `--require-openai-yaml` 旗標，讓需要 OpenAI / Codex metadata 的環境可強制驗證
+- `SKILL.md`
+  - 在標準檔案結構中補上 `agents/openai.yaml`
+  - 新增跨 Agent 獨立運作與降級策略的設計原則
+  - 補上 `references/compatibility.md` 的索引與進階驗證用法
+- `README.md`
+  - 補上 `agents/openai.yaml` 與 `references/compatibility.md`
+  - 補列本次補強內容，方便外部使用者快速理解差異
+
+### 目的
+
+這次不是把 GPT 官方做法整包照抄進來，而是補上真正對跨 Agent 運作最有幫助的兩層：
+
+1. 介面層：`agents/openai.yaml`
+2. 驗證層：可檢查 UI metadata 的 `quick_validate.py`
+
+這樣技能包大師在其他 Agent 環境中，比較不需要靠作者額外口頭補充。
+
+---
+
 ## v1.0 — 2026-04-07
 
 首次公開發行。整合 Anthropic 官方 skill-creator 與 OpenAI Codex Skills 觀念，加上實戰經驗，做成中文版的技能包全生命週期管理系統。

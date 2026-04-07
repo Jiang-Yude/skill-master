@@ -43,13 +43,19 @@ skill-master/
 ├── README.md                         ← 本檔案
 ├── NOTICE.md                         ← 第三方內容歸屬
 ├── LICENSE-skill-creator.txt         ← Anthropic skill-creator 的 Apache 2.0 授權
+├── agents/
+│   ├── openai.yaml                   ← OpenAI / Codex 類環境的 UI metadata
+│   ├── grader.md
+│   ├── comparator.md
+│   └── analyzer.md
 ├── references/
 │   ├── skill-spec-template.md        ← 規格驅動模式的 SPEC.md 模板
 │   ├── why-spec-driven.md            ← 為什麼需要規格驅動
 │   ├── skill-writing-guide.md        ← 寫作指引延伸說明
 │   ├── eval-guide.md                 ← 模式四完整操作
 │   ├── trigger-tuning-guide.md       ← 模式五完整操作
-│   └── schemas.md                    ← evals / grading / benchmark JSON 結構
+│   ├── schemas.md                    ← evals / grading / benchmark JSON 結構
+│   └── compatibility.md              ← 跨 Agent 相容邊界與降級策略
 ├── scripts/                          ← 評估、調校、打包、驗證腳本
 │   ├── run_eval.py
 │   ├── run_loop.py
@@ -59,21 +65,21 @@ skill-master/
 │   ├── package_skill.py
 │   ├── quick_validate.py
 │   └── utils.py
-├── agents/                           ← 評估與比較用的 subagent 指令
-│   ├── grader.md
-│   ├── comparator.md
-│   └── analyzer.md
 ├── assets/
 │   └── eval_review.html              ← 觸發測試查詢的 HTML 編輯器
 └── eval-viewer/                      ← 評估結果檢視器
     └── generate_review.py
 ```
 
-## 整合自誰
+## 整合自誰（三層歸屬）
 
-- **Anthropic 官方 skill-creator**（Apache 2.0）：檔案結構標準、Progressive Disclosure、eval / benchmark / 觸發調校的可執行腳本與 subagent 指令。已內建於 `scripts/`、`agents/`、`assets/`、`eval-viewer/`、`references/schemas.md`，完整出處見 [NOTICE.md](NOTICE.md)
-- **OpenAI Codex Skills 觀念**：`agents/openai.yaml` UI metadata 一致性檢查、跨環境部署考量
-- **實戰經驗**：五種模式分流、規格驅動（SPEC.md）、自由度設計、資源規劃表、scripts 實跑驗證、forward-testing 防汙染、Explain the Why、應用情境偏離提醒
+本技能包是整合作品。為了避免歸屬爭議，每一塊內容的來源都明確分成三層：
+
+- **GPT / OpenAI 官方**（產品介面層）：`agents/openai.yaml` 欄位規格（display_name、short_description、default_prompt 含 `$skill-name`、allow_implicit_invocation）。來自 OpenAI Codex Skills 公開文件
+- **Claude / Anthropic 官方**（執行引擎層，Apache 2.0）：`scripts/`、`agents/`、`assets/`、`eval-viewer/`、`references/schemas.md`、Progressive Disclosure、Explain the Why 寫法哲學。來自 Anthropic skill-creator，完整出處與授權見 [NOTICE.md](NOTICE.md) 與 `LICENSE-skill-creator.txt`
+- **江昱德自訂方法論**（方法論層 + 整合層，MIT）：五種模式分流、規格驅動（SPEC.md）、自由度設計、資源規劃表、scripts 實跑驗證原則、forward-testing 防汙染、跨 Agent 降級策略、`references/compatibility.md`、`quick_validate.py` 三層驗證升級、中文化處理規範
+
+逐項對照表見 [`references/attribution.md`](references/attribution.md)。fork 或再修改時，建議保留 `LICENSE-skill-creator.txt`、`NOTICE.md`、`references/attribution.md` 三個檔案，方便下一手追溯。
 
 ## 授權
 
@@ -81,6 +87,13 @@ skill-master/
 - 內含的 Anthropic skill-creator 內容（scripts/、agents/、assets/、eval-viewer/、references/schemas.md）：Apache License 2.0，見 `LICENSE-skill-creator.txt`
 
 兩者皆允許自由使用、修改、再散佈。
+
+## 這次補強了什麼
+
+- 新增 `agents/openai.yaml`，讓 OpenAI / Codex 類環境有可讀的 UI metadata
+- 新增 `references/compatibility.md`，明確寫出跨 Agent 相容邊界與降級策略
+- 升級 `scripts/quick_validate.py`，除了驗 `SKILL.md`，也會檢查 `agents/openai.yaml`，並支援 `--require-openai-yaml`
+- 在 `SKILL.md` 補上跨 Agent 獨立運作的設計原則與驗證方式
 
 ## 回饋
 
