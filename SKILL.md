@@ -558,6 +558,7 @@ python <本技能包路徑>/scripts/quick_validate.py <要驗證的技能包路�
 - references/skill-writing-guide.md — 技能包寫作指引的延伸說明
 - references/compatibility.md — 跨 Agent 相容邊界與降級策略
 - references/attribution.md — 三層內容歸屬對照表（GPT 官方／Claude 官方／自訂方法論）
+- references/decision-ladder-protocol.md — 減法許可協議（決策階梯 × 舉證反轉 × 紅線保留 ＋ 五題填空模板 ＋ 適用邊界）。做任何會精簡、限制輸出、幫使用者少做的技能包時對照。學自開源技能包 Ponytail。
 
 ---
 
