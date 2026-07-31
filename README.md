@@ -98,3 +98,13 @@ skill-master/
 ## 回饋
 
 用了之後遇到坑，或覺得哪裡可以更好，歡迎開 issue 或直接 PR。
+
+---
+
+## 維護者
+
+江昱德（Jiang Yude）<br>
+隱性知識提煉師<br>
+AI 知識架構師
+
+[知識官網](https://jiangyude.com/) · [Threads](https://www.threads.com/@jiang_yude_coach)
